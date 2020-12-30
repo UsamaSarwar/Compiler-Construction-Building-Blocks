@@ -1,4 +1,6 @@
 # Compiler Construction
+
 ## LR Parsers
-Type: Software
-Language: JavaFx
+
+`Type: Software
+Language: JavaFx`
