@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Compiler_Construction">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/Compiler_Construction.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

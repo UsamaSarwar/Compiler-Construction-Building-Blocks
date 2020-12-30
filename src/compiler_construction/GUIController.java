@@ -1,4 +1,4 @@
-package leftfactoring;
+package compiler_construction;
 
 import java.net.URL;
 import javafx.fxml.FXML;

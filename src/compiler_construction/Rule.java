@@ -1,7 +1,5 @@
-package leftfactoring;
+package compiler_construction;
 
-import java.util.Arrays;
-import java.util.Objects;
 /**
  *
  * @author Usama Sarwar <UsamaSarwarOfficial@gmail.com>

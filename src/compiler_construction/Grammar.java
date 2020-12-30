@@ -1,9 +1,9 @@
-package leftfactoring;
+package compiler_construction;
 
 import java.util.ArrayList;// import the ArrayList class
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Objects;
+
 /**
  *
  * @author Usama Sarwar <UsamaSarwarOfficial@gmail.com>
