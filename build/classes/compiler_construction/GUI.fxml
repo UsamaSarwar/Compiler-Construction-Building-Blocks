@@ -10,15 +10,16 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Text?>
 
 <TabPane tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="compiler_construction.GUIController">
    <tabs>
       <Tab text="LR Parsers">
          <content>
-            <BorderPane>
+            <BorderPane style="-fx-background-color: #212121;">
                <center>
-                  <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #212121;" BorderPane.alignment="CENTER">
+                  <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" BorderPane.alignment="CENTER">
                      <children>
                         <Button layoutX="277.0" layoutY="277.0" mnemonicParsing="false" onAction="#lr0Fun" prefHeight="25.0" prefWidth="346.0" text="LR (0)" />
                         <Button layoutX="277.0" layoutY="380.0" mnemonicParsing="false" onAction="#clr1Fun" prefHeight="25.0" prefWidth="346.0" text="CLR (1)" />
@@ -39,9 +40,9 @@
       </Tab>
       <Tab text="Left Factoring">
          <content>
-            <BorderPane>
+            <BorderPane style="-fx-background-color: #212121;">
                <center>
-                  <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #212121;">
+                  <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0">
                       <children>
                           <Button defaultButton="true" layoutX="789.0" layoutY="14.0" onAction="#leftFactoringFun" text="Read Grammar" textAlignment="CENTER" />
                         <TextField fx:id="input" alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="775.0" promptText="Write Grammar here i.e A=abcd|abcpd|abcD|abc|abd|a|b" text="A=abcd|abcpd|abcD|abc|abd|a|b" />
@@ -58,9 +59,9 @@
       </Tab>
       <Tab text="First &amp; Follow">
          <content>
-            <BorderPane>
+            <BorderPane style="-fx-background-color: #212121;">
                <center>
-                  <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #212121;" BorderPane.alignment="CENTER">
+                  <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" BorderPane.alignment="CENTER">
                      <children>
                         <Button defaultButton="true" layoutX="389.0" layoutY="5.0" onAction="#firstFollowFun" text="Find First and Follow" textAlignment="CENTER" />
                         <TextArea fx:id="output_FF" editable="false" layoutX="14.0" layoutY="172.0" prefHeight="409.0" prefWidth="871.0" promptText="Results..." wrapText="true">
@@ -77,9 +78,9 @@
       </Tab>
       <Tab text="Left Recursion">
          <content>
-            <BorderPane>
+            <BorderPane style="-fx-background-color: #212121;">
                <center>
-                  <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #212121;" BorderPane.alignment="CENTER">
+                  <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" BorderPane.alignment="CENTER">
                      <children>
                         <Button defaultButton="true" layoutX="382.0" layoutY="8.0" onAction="#leftRecursionFun" text="Remove Left Recursion" textAlignment="CENTER" />
                         <TextArea fx:id="output_LR" editable="false" layoutX="14.0" layoutY="173.0" prefHeight="408.0" prefWidth="871.0" promptText="Results..." wrapText="true">
@@ -89,6 +90,40 @@
                         </TextArea>
                         <TextArea fx:id="input_LR" layoutX="15.0" layoutY="71.0" prefHeight="96.0" prefWidth="869.0" promptText="Grammar here" text="S = A A&#10;A = A a | b" />
                         <TextField fx:id="input_LR_count" layoutX="15.0" layoutY="39.0" prefHeight="25.0" prefWidth="870.0" promptText="No. of Productions" text="2" />
+                     </children>
+                  </AnchorPane>
+               </center>
+            </BorderPane>
+         </content>
+      </Tab>
+      <Tab text="Regular Expression">
+        <content>
+            <BorderPane style="-fx-background-color: #212121;">
+               <center>
+                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <TextField fx:id="regexp_" alignment="CENTER" layoutX="163.0" layoutY="241.0" onKeyReleased="#checkRegEx_" prefHeight="25.0" prefWidth="575.0" promptText="Regular Expression" text="(a+b)*" />
+                        <TextField fx:id="testString_" layoutX="163.0" layoutY="300.0" onKeyReleased="#checkString_" prefHeight="25.0" prefWidth="575.0" promptText="Testing String here" text="ababaa" />
+                        <Text fill="#e1e1e1" layoutX="163.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Regular Expression" />
+                        <Text fill="#e1e1e1" layoutX="163.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Testing String" />
+                        <Circle fx:id="validCheck" fill="#1fff44" layoutX="725.0" layoutY="312.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                        <Circle fx:id="invalidCheck" fill="#ff2121" layoutX="725.0" layoutY="312.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                     </children>
+                  </AnchorPane>
+               </center>
+            </BorderPane>
+        </content>
+      </Tab>
+      <Tab text="Tokenization">
+         <content>
+            <BorderPane style="-fx-background-color: #212121;">
+               <center>
+                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Text fill="#e1e1e1" layoutX="15.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Java Code" />
+                        <Text fill="#e1e1e1" layoutX="15.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Generated Tokens" />
+                        <TextArea fx:id="tokens_" editable="false" layoutX="15.0" layoutY="215.0" prefHeight="371.0" prefWidth="870.0" promptText="Tokens here..." wrapText="true" />
+                        <TextArea fx:id="javaCode_" layoutX="15.0" layoutY="39.0" onKeyReleased="#tokenization_" prefHeight="136.0" prefWidth="870.0" promptText="int num = 123 ;" text="bool val;&#10;int num = 123;&#10;if ( num &lt;= 100 )&#10;val = true;" wrapText="true" />
                      </children>
                   </AnchorPane>
                </center>

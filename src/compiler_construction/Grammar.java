@@ -19,11 +19,11 @@ public class Grammar {
     private String startVariable;//s
     private HashMap<String, HashSet<String>> firstSets;//Create a HashMap object called firstset that will store String keys and HashSettype values:
     private HashMap<String, HashSet<String>> fallowSets;//Create a HashMap object called fallowset that will store String keys and HashSettype values:
-/*
-S -> A B
-A -> a B
-B -> s
-*/
+    /*
+    S -> A B
+    A -> a B
+    B -> s
+    */
     public Grammar(String s)//constructor s stores grammer
     {
         System.out.println("Grammer \n"+s);

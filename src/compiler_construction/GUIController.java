@@ -14,6 +14,11 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.shape.Circle;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -23,6 +28,26 @@ import java.util.Map;
  *
  */
 public class GUIController implements Initializable {
+
+    static String[] productions;
+    static String tempNT = "";
+    static HashMap<String, String[]> hmap = new HashMap<String, String[]>();
+
+    protected ArrayList<String> keyWords = new ArrayList<>(Arrays.asList("program", "var", "integer", "real", "boolean", "procedure", "begin",
+            "end", "if", "then", "else", "while", "do", "not"));
+
+    protected ArrayList<String> delimiters = new ArrayList<>(Arrays.asList(";", ".", ":", "(", ")", ","));
+    protected ArrayList<String> operatiorsR = new ArrayList<>(Arrays.asList("=", "<", ">", "<=", ">=", "<>"));
+    protected ArrayList<String> operatiorsA = new ArrayList<>(Arrays.asList("+", "-", "or"));
+    protected ArrayList<String> operatiorsM = new ArrayList<>(Arrays.asList("*", "/", "and"));
+    protected ArrayList<String> booleanDigits = new ArrayList<>(Arrays.asList("true", "false"));
+
+    protected String attributtion = ":=";
+    protected String identifiers = "([a-z]|[A-Z])([0-9]|[a-z]+|[A-Z]|_)*";
+    protected String intDigits = "[0-9]+";
+    protected String floatDigits = "[0-9]+[.][0-9]+";
+
+    protected ArrayList<String> myProgram = null;
 
     @FXML
     private TextField input;
@@ -36,16 +61,62 @@ public class GUIController implements Initializable {
     private TextArea output_LR;
     @FXML
     private TextArea input_LR;
-
-    static String[] productions;
-    static String tempNT = "";
-    static HashMap<String, String[]> hmap = new HashMap<String, String[]>();
     @FXML
     private TextField input_LR_count;
+    @FXML
+    private TextField regexp_;
+    @FXML
+    private TextField testString_;
+    @FXML
+    private Circle validCheck;
+    @FXML
+    private Circle invalidCheck;
+    @FXML
+    public TextArea tokens_;
+    @FXML
+    private TextArea javaCode_;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        checkRegularExpression();
+        startTokenization();
+    }
 
+    @FXML
+    private void tokenization_(KeyEvent event) {
+        startTokenization();
+    }
+
+    void startTokenization() {
+        tokens_.setText("");
+        String strLine = javaCode_.getText();
+        ArrayList<String> lines = new ArrayList<>();
+        lines.add(strLine);
+        myProgram = lines;
+        int resp = lexicAnalizer();
+    }
+
+    void checkRegularExpression() {
+        String regexexp = regexp_.getText();
+        String regulars = testString_.getText();
+        Boolean reg = Pattern.matches(regexexp, regulars);
+        if (reg) {
+            validCheck.setVisible(true);
+            invalidCheck.setVisible(false);
+        } else {
+            validCheck.setVisible(false);
+            invalidCheck.setVisible(true);
+        }
+    }
+
+    @FXML
+    private void checkRegEx_(KeyEvent event) {
+        checkRegularExpression();
+    }
+
+    @FXML
+    private void checkString_(KeyEvent event) {
+        checkRegularExpression();
     }
 
     @FXML
@@ -447,4 +518,76 @@ public class GUIController implements Initializable {
         output.appendText("\n" + "\n");
     }
 
+    public int lexicAnalizer() {
+
+//        GUIController gc= new GUIController();
+        for (int i = 0; i < this.myProgram.size(); i++) {
+            String line = discardComments(this.myProgram.get(i));
+            String[] splited = line.split("\\s+");
+
+            for (int j = 0; j < splited.length; j++) {
+                String token = splited[j];
+                String result = checkToken(token);
+                if (!result.equals("unknown")) {
+//                    System.out.println(token + " | " + result + " |" + i);
+                    tokens_.appendText(token + "\t\t|\t" + result + "\n");
+
+                } else {
+                    String subToken = token.substring(0, token.length() - 1);
+                    result = checkToken(subToken);
+                    if (!result.equals("unknown")) {
+//                        System.out.println(subToken + " | " + result + " |" + i);
+                        tokens_.appendText(subToken + "\t\t|\t" + result + "\n");
+
+                        String lastToken = token.substring(token.length() - 1, token.length());
+                        result = checkToken(lastToken);
+                        if (!result.equals("unknown")) {
+//                            System.out.println(lastToken + " | " + result + " |" + i);
+                            tokens_.appendText(lastToken + "\t\t|\t" + result + "\n");
+                        } else {
+                            System.err.println("Error: Does not belong to language!");
+                            System.err.println("Line: " + i + ", Status: " + result + " -> " + subToken);
+//                            return 0;
+                        }
+                    } else {
+                        System.err.println("Error: Does not belong to language!");
+                        System.err.println("Line: " + i + ", Status: " + result + " -> " + subToken);
+//                        return 0;
+                    }
+                }
+            }
+        }
+        return 1;
+    }
+
+    String discardComments(String line) {
+        return line.replaceAll("\\{(?s).*?}", "");
+    }
+
+    String checkToken(String split) {
+
+        if (this.keyWords.contains(split)) {
+            return "Keyword";
+        } else if (this.delimiters.contains(split)) {
+            return "Delimiter";
+        } else if (this.operatiorsR.contains((split))) {
+            return "Comparison Operator";
+        } else if (this.operatiorsA.contains(split)) {
+            return "Additive Operator";
+        } else if (this.operatiorsM.contains(split)) {
+            return "Multiplicative Operator";
+        } else if (split.matches(this.intDigits)) {
+            return "Integer Digit";
+        } else if (split.matches(this.floatDigits)) {
+            return "Floating Point Digit";
+        } else if (split.matches(this.identifiers)) {
+            if (this.booleanDigits.contains(split)) {
+                return "Boolean Digit";
+            }
+            return "Identifier";
+        } else if (split.matches("\\{(?s).*?")) {
+            return "unknown";
+        }
+        return "unknown";
+    }
 }
