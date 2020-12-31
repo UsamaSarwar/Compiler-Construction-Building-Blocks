@@ -19,6 +19,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Circle;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -80,6 +82,16 @@ public class GUIController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         checkRegularExpression();
         startTokenization();
+    }
+    
+    
+    @FXML
+    private void startFA_(ActionEvent event) {
+        try {
+            GUI.Main.main(productions);
+        } catch (InterruptedException ex) {
+            // Logger.getLogger(GUIController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
@@ -198,7 +210,6 @@ public class GUIController implements Initializable {
 
     }
 
-    // Left Recursion Start here
     void initHash() {
 
         Stack<String> stack[] = new Stack[tempNT.length()];
@@ -349,7 +360,6 @@ public class GUIController implements Initializable {
         return false;
     }
 
-    // Left Recursion End here
     void commonPrefixes(String line) {
         System.out.println("Input : " + line);
         //Input : S=iEtS|iEtSes|a  1st iteration
@@ -590,4 +600,6 @@ public class GUIController implements Initializable {
         }
         return "unknown";
     }
+
+    
 }

@@ -20,7 +20,7 @@ public class CompilerConstruction extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("GUI.fxml"));
         Scene scene = new Scene(root);
-        stage.setTitle("Compiler Construction LR Parsers v1.0.0");
+        stage.setTitle("Compiler Construction Building Blocks v1.0.0");
         stage.setScene(scene);
         stage.show();
     }

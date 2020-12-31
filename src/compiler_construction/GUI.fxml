@@ -11,27 +11,80 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <TabPane tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="compiler_construction.GUIController">
    <tabs>
-      <Tab text="LR Parsers">
+      <Tab text="Compilar Construction">
+        <content>
+            <BorderPane style="-fx-background-color: #212121;">
+               <center>
+                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0">
+                     <children>
+                        <ImageView fitHeight="214.0" fitWidth="201.0" layoutX="350.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="#dadada" layoutX="340.0" layoutY="387.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Compilar Construction" textAlignment="CENTER">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#dadada" layoutX="397.0" layoutY="413.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Building Blocks" textAlignment="CENTER">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#dadada" layoutX="369.0" layoutY="571.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Made with ♥ by Usama Sarwar" textAlignment="CENTER" />
+                     </children>
+                  </AnchorPane>
+               </center>
+            </BorderPane>
+        </content>
+      </Tab>
+      <Tab text="Regular Expression">
+        <content>
+            <BorderPane style="-fx-background-color: #212121;">
+               <center>
+                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <TextField fx:id="regexp_" alignment="CENTER" layoutX="163.0" layoutY="281.0" onKeyReleased="#checkRegEx_" prefHeight="25.0" prefWidth="575.0" promptText="Regular Expression" text="(a+b)*" />
+                        <TextField fx:id="testString_" layoutX="163.0" layoutY="340.0" onKeyReleased="#checkString_" prefHeight="25.0" prefWidth="575.0" promptText="Testing String here" text="ababaa" />
+                        <Text fill="#e1e1e1" layoutX="163.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Regular Expression" />
+                        <Text fill="#e1e1e1" layoutX="163.0" layoutY="332.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Test String" />
+                        <Circle fx:id="validCheck" fill="#1fff44" layoutX="725.0" layoutY="352.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                        <Circle fx:id="invalidCheck" fill="#ff2121" layoutX="725.0" layoutY="352.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="376.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../regex.png" />
+                           </image>
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+               </center>
+            </BorderPane>
+        </content>
+      </Tab>
+      <Tab text="First &amp; Follow">
          <content>
             <BorderPane style="-fx-background-color: #212121;">
                <center>
                   <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Button layoutX="277.0" layoutY="277.0" mnemonicParsing="false" onAction="#lr0Fun" prefHeight="25.0" prefWidth="346.0" text="LR (0)" />
-                        <Button layoutX="277.0" layoutY="380.0" mnemonicParsing="false" onAction="#clr1Fun" prefHeight="25.0" prefWidth="346.0" text="CLR (1)" />
-                        <Button layoutX="277.0" layoutY="344.0" mnemonicParsing="false" onAction="#lr1Fun" prefHeight="25.0" prefWidth="346.0" text="LR (1)" />
-                        <Button layoutX="277.0" layoutY="312.0" mnemonicParsing="false" onAction="#slr1Fun" prefHeight="25.0" prefWidth="346.0" text="SLR (1)" />
-                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="375.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../image.png" />
-                           </image>
-                        </ImageView>
-                        <Text fill="#e8e8e8" layoutX="370.0" layoutY="583.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Copyright © 2020   LR Parsers" />
-                        <Text fill="#e8e8e8" layoutX="369.0" layoutY="563.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Made with ♥ by Usama Sarwar" />
+                        <Button defaultButton="true" layoutX="764.0" layoutY="14.0" onAction="#firstFollowFun" prefHeight="25.0" prefWidth="121.0" text="Find" textAlignment="CENTER" />
+                        <TextArea fx:id="output_FF" editable="false" layoutX="14.0" layoutY="279.0" prefHeight="302.0" prefWidth="871.0" promptText="Results..." wrapText="true">
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </TextArea>
+                        <TextArea fx:id="input_FF" layoutX="14.0" layoutY="66.0" prefHeight="173.0" prefWidth="873.0" promptText="Grammar here" text="S -&gt; A A&#10;A -&gt; a A | b" />
+                        <Text fill="#e1e1e1" layoutX="14.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First and Follow" />
+                        <Text fill="#e1e1e1" layoutX="14.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Grammar" />
                      </children>
                   </AnchorPane>
                </center>
@@ -44,33 +97,16 @@
                <center>
                   <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0">
                       <children>
-                          <Button defaultButton="true" layoutX="789.0" layoutY="14.0" onAction="#leftFactoringFun" text="Read Grammar" textAlignment="CENTER" />
-                        <TextField fx:id="input" alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="775.0" promptText="Write Grammar here i.e A=abcd|abcpd|abcD|abc|abd|a|b" text="A=abcd|abcpd|abcD|abc|abd|a|b" />
-                        <TextArea fx:id="output" editable="false" layoutX="14.0" layoutY="48.0" prefHeight="533.0" prefWidth="871.0" promptText="Results..." wrapText="true">
+                          <Button defaultButton="true" layoutX="789.0" layoutY="24.0" onAction="#leftFactoringFun" text="Read Grammar" textAlignment="CENTER" />
+                        <TextField fx:id="input" alignment="CENTER" layoutX="14.0" layoutY="24.0" prefHeight="25.0" prefWidth="775.0" promptText="Write Grammar here i.e A=abcd|abcpd|abcD|abc|abd|a|b" text="A=abcd|abcpd|abcD|abc|abd|a|b" />
+                        <TextArea fx:id="output" editable="false" layoutX="14.0" layoutY="82.0" prefHeight="499.0" prefWidth="871.0" promptText="Results..." wrapText="true">
                            <effect>
                               <Glow />
                            </effect>
                         </TextArea>
+                        <Text fill="#dddddd" layoutX="14.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Left Factoring" />
+                        <Text fill="#dddddd" layoutX="14.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Grammar" />
                       </children>
-                  </AnchorPane>
-               </center>
-            </BorderPane>
-         </content>
-      </Tab>
-      <Tab text="First &amp; Follow">
-         <content>
-            <BorderPane style="-fx-background-color: #212121;">
-               <center>
-                  <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" BorderPane.alignment="CENTER">
-                     <children>
-                        <Button defaultButton="true" layoutX="389.0" layoutY="5.0" onAction="#firstFollowFun" text="Find First and Follow" textAlignment="CENTER" />
-                        <TextArea fx:id="output_FF" editable="false" layoutX="14.0" layoutY="172.0" prefHeight="409.0" prefWidth="871.0" promptText="Results..." wrapText="true">
-                           <effect>
-                              <Glow />
-                           </effect>
-                        </TextArea>
-                        <TextArea fx:id="input_FF" layoutX="15.0" layoutY="36.0" prefHeight="131.0" prefWidth="869.0" promptText="Grammar here" text="S -&gt; A A&#10;A -&gt; a A | b" />
-                     </children>
                   </AnchorPane>
                </center>
             </BorderPane>
@@ -82,37 +118,43 @@
                <center>
                   <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Button defaultButton="true" layoutX="382.0" layoutY="8.0" onAction="#leftRecursionFun" text="Remove Left Recursion" textAlignment="CENTER" />
-                        <TextArea fx:id="output_LR" editable="false" layoutX="14.0" layoutY="173.0" prefHeight="408.0" prefWidth="871.0" promptText="Results..." wrapText="true">
+                        <Button defaultButton="true" layoutX="749.0" layoutY="14.0" onAction="#leftRecursionFun" text="Remove Left Recursion" textAlignment="CENTER" />
+                        <TextArea fx:id="output_LR" editable="false" layoutX="14.0" layoutY="258.0" prefHeight="323.0" prefWidth="871.0" promptText="Results..." wrapText="true">
                            <effect>
                               <Glow />
                            </effect>
                         </TextArea>
-                        <TextArea fx:id="input_LR" layoutX="15.0" layoutY="71.0" prefHeight="96.0" prefWidth="869.0" promptText="Grammar here" text="S = A A&#10;A = A a | b" />
-                        <TextField fx:id="input_LR_count" layoutX="15.0" layoutY="39.0" prefHeight="25.0" prefWidth="870.0" promptText="No. of Productions" text="2" />
+                        <TextArea fx:id="input_LR" layoutX="16.0" layoutY="126.0" prefHeight="96.0" prefWidth="869.0" promptText="Grammar here" text="S = A A&#10;A = A a | b" />
+                        <TextField fx:id="input_LR_count" layoutX="15.0" layoutY="68.0" prefHeight="25.0" prefWidth="869.0" promptText="No. of Productions" text="2" />
+                        <Text fill="#e4e4e4" layoutX="15.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No. of Productions" />
+                        <Text fill="#e4e4e4" layoutX="15.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Grammar" />
+                        <Text fill="#e4e4e4" layoutX="14.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Grammar" />
                      </children>
                   </AnchorPane>
                </center>
             </BorderPane>
          </content>
       </Tab>
-      <Tab text="Regular Expression">
-        <content>
+      <Tab text="LR Parsers">
+         <content>
             <BorderPane style="-fx-background-color: #212121;">
                <center>
-                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+                  <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" BorderPane.alignment="CENTER">
                      <children>
-                        <TextField fx:id="regexp_" alignment="CENTER" layoutX="163.0" layoutY="241.0" onKeyReleased="#checkRegEx_" prefHeight="25.0" prefWidth="575.0" promptText="Regular Expression" text="(a+b)*" />
-                        <TextField fx:id="testString_" layoutX="163.0" layoutY="300.0" onKeyReleased="#checkString_" prefHeight="25.0" prefWidth="575.0" promptText="Testing String here" text="ababaa" />
-                        <Text fill="#e1e1e1" layoutX="163.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Regular Expression" />
-                        <Text fill="#e1e1e1" layoutX="163.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Testing String" />
-                        <Circle fx:id="validCheck" fill="#1fff44" layoutX="725.0" layoutY="312.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-                        <Circle fx:id="invalidCheck" fill="#ff2121" layoutX="725.0" layoutY="312.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                        <Button layoutX="277.0" layoutY="300.0" mnemonicParsing="false" onAction="#lr0Fun" prefHeight="30.0" prefWidth="346.0" text="LR (0)" />
+                        <Button layoutX="277.0" layoutY="420.0" mnemonicParsing="false" onAction="#clr1Fun" prefHeight="30.0" prefWidth="346.0" text="CLR (1)" />
+                        <Button layoutX="277.0" layoutY="380.0" mnemonicParsing="false" onAction="#lr1Fun" prefHeight="30.0" prefWidth="346.0" text="LR (1)" />
+                        <Button layoutX="277.0" layoutY="340.0" mnemonicParsing="false" onAction="#slr1Fun" prefHeight="30.0" prefWidth="346.0" text="SLR (1)" />
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="375.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../LR_Parsers.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                </center>
             </BorderPane>
-        </content>
+         </content>
       </Tab>
       <Tab text="Tokenization">
          <content>
@@ -129,6 +171,24 @@
                </center>
             </BorderPane>
          </content>
+      </Tab>
+      <Tab text="Finite Automata">
+        <content>
+            <BorderPane style="-fx-background-color: #fff;">
+               <center>
+                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0">
+                     <children>
+                        <Button layoutX="373.0" layoutY="545.0" mnemonicParsing="false" onAction="#startFA_" prefHeight="31.0" prefWidth="155.0" text="Construct Finite Automata" />
+                        <ImageView fitHeight="491.0" fitWidth="869.0" layoutX="-57.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../fa.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+               </center>
+            </BorderPane>
+        </content>
       </Tab>
    </tabs>
 </TabPane>
