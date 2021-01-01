@@ -77,14 +77,15 @@ public class GUIController implements Initializable {
     public TextArea tokens_;
     @FXML
     private TextArea javaCode_;
+    @FXML
+    private TextArea output_FFF;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         checkRegularExpression();
         startTokenization();
     }
-    
-    
+
     @FXML
     private void startFA_(ActionEvent event) {
         try {
@@ -181,7 +182,6 @@ public class GUIController implements Initializable {
         productions = new String[noProductions];
         productions = input_LR.getText().split("\n");
 
-//        System.out.println("\nGiven Productions");
         output_LR.setText("\nGiven Productions\n");
         printProductions();
         findNonTerminals();
@@ -207,6 +207,21 @@ public class GUIController implements Initializable {
         printHashMap();
 
         output_LR.appendText("\n");
+
+        // First and Follow Code here
+        Grammar grammar = new Grammar(input_LR.getText());
+        String first = "";
+        String follow = "";
+        for (String s : grammar.getFirstSets().keySet()) {
+            first += s + " : " + grammar.getFirstSets().get(s) + "\n";
+        }
+        for (String s : grammar.getFallowSets().keySet()) {
+            follow += s + " : " + grammar.getFallowSets().get(s) + "\n";
+        }
+        output_FFF.setText("First\n==========\n");
+        output_FFF.appendText(first);
+        output_FFF.appendText("\n\nFollow\n==========\n");
+        output_FFF.appendText(follow);
 
     }
 
@@ -601,5 +616,4 @@ public class GUIController implements Initializable {
         return "unknown";
     }
 
-    
 }

@@ -119,16 +119,22 @@
                   <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" BorderPane.alignment="CENTER">
                      <children>
                         <Button defaultButton="true" layoutX="749.0" layoutY="14.0" onAction="#leftRecursionFun" text="Remove Left Recursion" textAlignment="CENTER" />
-                        <TextArea fx:id="output_LR" editable="false" layoutX="14.0" layoutY="258.0" prefHeight="323.0" prefWidth="871.0" promptText="Results..." wrapText="true">
+                        <TextArea fx:id="output_LR" editable="false" layoutX="14.0" layoutY="258.0" prefHeight="323.0" prefWidth="408.0" promptText="Results..." wrapText="true">
                            <effect>
                               <Glow />
                            </effect>
                         </TextArea>
-                        <TextArea fx:id="input_LR" layoutX="16.0" layoutY="126.0" prefHeight="96.0" prefWidth="869.0" promptText="Grammar here" text="S = A A&#10;A = A a | b" />
+                        <TextArea fx:id="input_LR" layoutX="16.0" layoutY="126.0" prefHeight="96.0" prefWidth="869.0" promptText="Grammar here" text="S -&gt; A A&#10;A -&gt; A a | b" />
                         <TextField fx:id="input_LR_count" layoutX="15.0" layoutY="68.0" prefHeight="25.0" prefWidth="869.0" promptText="No. of Productions" text="2" />
                         <Text fill="#e4e4e4" layoutX="15.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No. of Productions" />
                         <Text fill="#e4e4e4" layoutX="15.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Grammar" />
-                        <Text fill="#e4e4e4" layoutX="14.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Grammar" />
+                        <Text fill="#e4e4e4" layoutX="15.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Grammar" />
+                        <TextArea fx:id="output_FFF" editable="false" layoutX="474.0" layoutY="258.0" prefHeight="323.0" prefWidth="408.0" promptText="Results..." wrapText="true">
+                           <effect>
+                              <Glow />
+                           </effect>
+                        </TextArea>
+                        <Text fill="#e4e4e4" layoutX="475.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First and Follow" />
                      </children>
                   </AnchorPane>
                </center>
