@@ -1,6 +1,8 @@
-# Compiler Construction
+# Compiler Construction v1.0.0
 
-## LR Parsers
+## Building Block
 
-`Type: Software
-Language: JavaFx`
+```
+Type: Software
+Language: JavaFx
+```
